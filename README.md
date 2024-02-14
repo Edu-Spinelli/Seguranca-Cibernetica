@@ -40,3 +40,21 @@ A Cifra de César, também conhecida como cifra de troca, código de César ou t
 Em criptografia, também temos o conceito de criptaritmética, que é trocar letras por números, e é comprovado que o nosso cérebro é capaz de fazer a associação automaticamente e ler textos nesse formato. Para que isso não ocorra, criou-se, com base na cifra de cesar, o ROT13.
 
 ROT-13 (ou rot13, rot-13, Rot13, etc) é o nome que se costuma usar para um procedimento simples mas eficaz para garantir que textos eletrônicos não sejam lidos por distração ou acidente. ROT-13 vem do inglês, ROTate by 13 places, "ROTacionar 13 posições".
+
+<img src = rot13.png>
+
+Que é o que aconteceu no nosso challenge. Se repararmos bem, a flag usual: ```picoCTF{flag}``` e a flag que encontramos no arquivo ```cvpbPGS{P7e1S_54I35_71Z3}``` tem essa cifra aplicada no inicio, sendo o `p` trocado pelo `c`, o `i` trocado pelo `v`, e etc...
+
+Sabendo disso, basta realizar o descriptografia da palavra, aplicando ROT13 em todas as letras. 
+A biblioteca ```codecs``` do python ja possui um encriptador de ROT13, então basta aplicar que teremos nossa flag!
+
+
+```python
+import codecs
+flag = "cvpbPGS{P7e1S_54I35_71Z3}"
+flag_decodificada=codecs.encode(flag, 'rot13')
+print(flag_decodificada)
+```
+Que tem como resultado: ````picoCTF{C7r1F_54V35_71M3}````
+
+Matei!
